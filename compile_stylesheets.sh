@@ -1,0 +1,2 @@
+rails dartsass:build
+

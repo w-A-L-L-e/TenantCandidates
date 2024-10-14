@@ -1,0 +1,84 @@
+<h1>Kandidaat huurder</h1>
+<% if @next_huurder.present? %>
+  <%= link_to "Volgende kandidaat", @next_huurder, class: "button is-info" %>
+<%end%>
+
+<script type="text/javascript">
+  async function deletePhoto(path, huurder_id, filename) {
+    const formData = new FormData();
+    formData.append('huurder_id', huurder_id);
+    formData.append('filename', filename);
+
+    try {
+      const response = await fetch(path, {
+        method: "DELETE",
+        body: formData,
+        headers: {
+          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content, // Add CSRF token
+        },
+      });
+
+      if (response.ok) {
+        // const result = await response.json();
+        console.log("file deleted");
+        window.location.reload();
+      } else {
+        console.log("upload error");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+
+  }
+</script>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="is-pulled-right">
+  <%= button_to "Verwijderen", @huurder, method: :delete, class: "button is-small is-danger" %>
+</div>
+
+<%= render @huurder %>
+<%= render partial: "email_invitation", locals: {huurder: @huurder} %>
+
+
+<h2>Afbeeldingen en bestanden</h2>
+<div class="file-cards">
+<% @huurder_files.each do |hf| %>
+  <div class="file-card">
+    <%= image_tag "/uploads/huurder_#{@huurder.id}/#{hf}" %>
+    <div class="image-footer">
+      <div class="is-pulled-left image-filename">  <%= hf %> </div>
+      <div class="is-pulled-right">  
+        <button class="button is-small is-danger" 
+                onclick="<%= "deletePhoto(\"#{upload_path}\", #{@huurder.id}, \"#{hf.html_safe}\")"%>">X</button> 
+      </div>
+    </div>
+
+  </div>
+<% end %>
+</div>
+
+<%= form_with(url: upload_path, local: false, html: { id: 'imageUploadForm', multipart: true }) do |form| %>
+    <%= form.hidden_field :huurder_id, value: @huurder.id %>
+
+  <div class="field">
+    <div class="control">
+      <%= form.file_field :image, accept: 'image/jpeg', 
+        capture: 'camera', id: 'cameraInput', class: "button is-link is-pulled-left" %>
+      <%= form.submit 'Upload', id: 'uploadButton', class: "upload-btn button is-primary"%>
+    </div>
+  </div>
+  
+  <div id="preview"></div>
+<% end %>
+
+
+<br/>
+<br/>
+
+<%= link_to "Huurders", huurders_path, class: "button is-info" %>
+&nbsp;
+<%= link_to "Bewerken", edit_huurder_path(@huurder), class: "button is-link" %> 
+
+<br/>

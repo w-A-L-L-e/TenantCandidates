@@ -1,0 +1,67 @@
+<%= form_with(model: huurder) do |form| %>
+  <% if huurder.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(huurder.errors.count, "error") %> prohibited this huurder from being saved:</h2>
+
+      <ul>
+        <% huurder.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, style: "display: block", class:"label" %>
+    <div class="control">
+      <%= form.text_field :name, class:"input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone, style: "display: block" %>
+    <div class="control">
+      <%= form.text_field :phone, class:"input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, style: "display: block" %>
+    <div class="control">
+      <%= form.text_field :email, class:"input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :appointment, style: "display: block" %>
+    <div class="control">
+     <%= form.datetime_field :appointment, class: "datetime-input"%>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks, style: "display: block" %>
+    <div class="control">
+      <%= form.text_area :remarks, class:"textarea" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluation, style: "display: block" %>
+    <div class="control">
+      <%= form.text_area :evaluation, class:"textarea" %>
+    </div>
+  </div>
+
+
+  <br/>
+ 
+  <div class="field">
+    <div class="control">
+      <%= link_to "Annuleer", @huurder, class: "button is-secondary is-medium" %>
+      &nbsp;
+
+      <%= form.submit 'Opslaan',  class: 'button is-primary is-medium' %>
+    </div>
+  </div>
+<% end %>

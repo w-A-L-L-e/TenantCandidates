@@ -1,0 +1,91 @@
+// Sassy
+
+@use "bulma";
+
+.content {
+  padding: 1em;
+  padding-bottom: 3em;
+}
+
+#huurder_appointment {
+  height: 40px;
+  border-radius: 7px;
+  width: 19%;
+}
+
+.mail-template-area {
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.file-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px;
+}
+
+.file-card {
+  padding: 10px;
+}
+
+#cameraInput {
+  width: 70%;
+}
+
+.upload-btn {
+  width: 25%;
+  margin-left: 10px;
+}
+
+.datetime-input {
+  font-size: 20px;
+}
+
+.image-filename {
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.image-footer {
+  background-color: #222;
+  height: 35px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .datetime-input {
+    border: 1px solid #888;
+    color: #ddd;
+    background-color: #444;
+  }
+}
+
+.huurders-desktop {
+  display: block;
+}
+
+.huurders-mobile {
+  display: none;
+}
+
+
+@media (max-width: 900px) {
+  .file-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .file-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .huurders-mobile {
+    display: block;
+  }
+
+  .huurders-desktop {
+    display: none;
+  }
+}

@@ -1,0 +1,65 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Kandidaat huurders (aantal: <%= @huurders.count%>)</h1>
+
+<div class="field">
+  <div class="control">
+<%= link_to "Nieuwe kandidaat huurder", new_huurder_path, class:"button is-primary" %>
+  </div>
+</div>
+
+<div id="huurders" class="huurders-desktop">
+  <table class="table is-striped is-bordered">
+    <thead>
+      <tr>
+        <th>Naam</th>
+        <th>Telefoon</th>
+        <th>Afspraak</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @huurders.each do |huurder| %>
+        <tr> 
+          <td><%= huurder.name %> </td>  
+          <td><a href="tel:<%= huurder.phone %>"><%= huurder.phone %></a></td>  
+          <td><%= huurder.appointment %> </td>  
+          <td>
+            <%= link_to "Details", huurder, class: "button is-link" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+
+<div id="huurders" class="huurders-mobile">
+  <table class="table is-striped is-bordered">
+    <thead>
+      <tr>
+        <th>Huurder</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @huurders.each do |huurder| %>
+        <tr> 
+          <td>
+            <%= huurder.name %> <br/>  
+            <a href="tel:<%= huurder.phone %>"><%= huurder.phone %></a> <br/>
+            <%= huurder.appointment %> 
+          </td>
+          <td>
+            <%= link_to "Details", huurder, class: "button is-link" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</div>
+

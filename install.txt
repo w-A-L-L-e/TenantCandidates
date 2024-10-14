@@ -1,0 +1,66 @@
+
+vi Gemfile
+(.pyenv) ➜  KandidaatHuurders git:(main) ✗ rm app/assets/stylesheets/application.css 
+(.pyenv) ➜  KandidaatHuurders git:(main) ✗ bundle install
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...
+Fetching google-protobuf 4.28.2 (x86_64-linux)
+Installing google-protobuf 4.28.2 (x86_64-linux)
+Fetching sass-embedded 1.79.4 (x86_64-linux-gnu)
+Installing sass-embedded 1.79.4 (x86_64-linux-gnu)
+Fetching dartsass-rails 0.5.1
+Installing dartsass-rails 0.5.1
+Fetching bulma-rails 1.0.2
+Installing bulma-rails 1.0.2
+Bundle complete! 15 Gemfile dependencies, 86 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+(.pyenv) ➜  KandidaatHuurders git:(main) ✗ bin/bundle add dartsass-rails
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...
+(.pyenv) ➜  KandidaatHuurders git:(main) ✗ bin/rails dartsass:install
+       apply  /var/lib/gems/3.2.0/gems/dartsass-rails-0.5.1/lib/install/dartsass.rb
+  Build into app/assets/builds
+      create    app/assets/builds
+      create    app/assets/builds/.keep
+      append    app/assets/config/manifest.js
+  Stop linking stylesheets automatically
+        gsub    app/assets/config/manifest.js
+      append    .gitignore
+  Add default app/assets/stylesheets/application.scss
+      create    app/assets/stylesheets/application.scss
+  Add default Procfile.dev
+      create    Procfile.dev
+  Ensure foreman is installed
+         run    gem install foreman from "."
+Successfully installed foreman-0.88.1
+Parsing documentation for foreman-0.88.1
+Done installing documentation for foreman after 0 seconds
+1 gem installed
+  Add bin/dev to start foreman
+      create    bin/dev
+  Compile initial Dart Sass build
+         run    rails dartsass:build from "."
+         run  bundle install
+Bundle complete! 16 Gemfile dependencies, 86 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+
+
+rails db:create
+Created database 'storage/development.sqlite3'
+Created database 'storage/test.sqlite3'
+(.pyenv) ➜  KandidaatHuurders git:(main) ✗ rails g scaffold huurder name:string phone:string email:string remarks:text evaluation:text appointment:datetime        
+      invoke  active_record
+
+
+rails db:create
+rails db:migrate
+
+
+
+
+rails dartsass:build # or ./bin/dev to generated CSS output
+
+
+
